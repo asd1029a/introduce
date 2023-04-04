@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <th:block th:replace="/fragments/default :: defaultFragment"/>
+    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="css"></th:block>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+</head>
+<body>
+    <th:block th:replace="/fragments/header :: headerFragment"/>
+    <th:block layout:fragment="content"></th:block>
+    <th:block th:replace="/fragments/footer :: footerFragment"/>
+</body>
+</html>
