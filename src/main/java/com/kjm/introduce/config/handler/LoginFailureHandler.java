@@ -21,7 +21,6 @@ import java.io.IOException;
 public class LoginFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-
         if(exception instanceof AuthenticationServiceException) {
             request.setAttribute("LoginFail", "시스템 에러.");
         } else if (exception instanceof BadCredentialsException) {
@@ -31,11 +30,11 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
         } else if (exception instanceof LockedException) {
             request.setAttribute("LoginFail", "잠긴 아이디입니다.");
         } else if(exception instanceof AccountExpiredException) {
-            request.setAttribute("LoginFailMessage", "이미 만료된 계정입니다.");
+            request.setAttribute("LoginFail", "이미 만료된 계정입니다.");
         } else if(exception instanceof CredentialsExpiredException) {
-            request.setAttribute("LoginFailMessage", "비밀번호가 만료된 계정입니다.");
-        } else request.setAttribute("LoginFailMessage", "계정을 찾을 수 없습니다.");
+            request.setAttribute("LoginFail", "비밀번호가 만료된 계정입니다.");
+        } else request.setAttribute("LoginFail", "계정을 찾을 수 없습니다.");
 
-        response.sendRedirect("/login/error");
+        response.sendRedirect("/members/login/error");
     }
 }

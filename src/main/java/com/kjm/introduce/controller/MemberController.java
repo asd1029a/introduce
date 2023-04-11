@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
@@ -32,15 +34,23 @@ public class MemberController {
         return "member/login";
     }
 
+    @RequestMapping("/login/error")
+    public String loginError(HttpServletRequest request, Model model) {
+        String loginFail = (String) request.getAttribute("LoginFail");
+        model.addAttribute("errorMessage","아이디,비번을 확인하세요");
+        return "member/login";
+    }
+
     @GetMapping("/sign-up")
-    public String signUp() {
+    public String signUp(Model model) {
+        model.addAttribute("memberDto", new MemberDto());
         return "member/signUp";
     }
 
     @PostMapping("/sign-up")
     public String signUp(@Valid MemberDto memberDto, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
-            return "/sign-up";
+            return "member/signUp";
         }
         try {
             memberService.save(memberDto);

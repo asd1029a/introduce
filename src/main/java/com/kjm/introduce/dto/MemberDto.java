@@ -17,15 +17,16 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class MemberDto {
 
-    @NotBlank(message = "e-mailを入力してください。")
+    @NotBlank
     @Email(message = "e-mailの形式に合ってません。")
     private String email;
 
-    @NotBlank(message = "番号を入力してください。")
+    @NotBlank(message = "お名前を入力してください。")
+    private String name;
+
     @Length(min = 11, max = 15, message = "番号が変です。")
     private String phone;
 
-    @NotBlank(message = "パスワードを入力してください。")
     @Length(min = 8, max = 20, message = "8~20以内に　入力してください。")
     private String password;
     @NotBlank(message = "ニックネームを入力してください。")
@@ -35,6 +36,7 @@ public class MemberDto {
         return Member.builder()
                 .email(email)
                 .phone(phone)
+                .name(name)
                 .password(password)
                 .nickname(nickname)
                 .build();
