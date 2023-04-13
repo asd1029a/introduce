@@ -34,6 +34,8 @@ public class SecurityMember implements UserDetails {
         return member.getEmail();
     }
 
+    public String getNickname() {return member.getNickname();}
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return grantedAuthorities;

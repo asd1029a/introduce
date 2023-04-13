@@ -1,9 +1,6 @@
 package com.kjm.introduce.service;
 
-import com.kjm.introduce.domain.Member;
 import com.kjm.introduce.dto.MemberDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 /**
  * MemberService.java
@@ -17,5 +14,6 @@ public interface MemberService {
     void save(MemberDto memberDto);
     void delete(Long memberId);
     void update(Long memberId, MemberDto memberDto);
+//    JwtToken login(MemberDto memberDto);
 
 }

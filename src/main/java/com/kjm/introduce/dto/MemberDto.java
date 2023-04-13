@@ -3,6 +3,7 @@ package com.kjm.introduce.dto;
 import com.kjm.introduce.domain.Member;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -32,12 +33,12 @@ public class MemberDto {
     @NotBlank(message = "ニックネームを入力してください。")
     private String nickname;
 
-    public Member createMember() {
+    public Member createMember(PasswordEncoder passwordEncoder) {
         return Member.builder()
                 .email(email)
                 .phone(phone)
                 .name(name)
-                .password(password)
+                .password(passwordEncoder.encode(password))
                 .nickname(nickname)
                 .build();
     }

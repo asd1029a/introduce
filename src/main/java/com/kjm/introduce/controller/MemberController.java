@@ -37,7 +37,7 @@ public class MemberController {
     @RequestMapping("/login/error")
     public String loginError(HttpServletRequest request, Model model) {
         String loginFail = (String) request.getAttribute("LoginFail");
-        model.addAttribute("errorMessage","아이디,비번을 확인하세요");
+        model.addAttribute("errorMessage",loginFail);
         return "member/login";
     }
 
